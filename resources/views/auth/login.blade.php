@@ -12,44 +12,45 @@
 @endif
 
 
- <body class="login">
-    <div>
+ <body class="login" style="height:100%;"> 
+    <div >
+
+
+
+
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
-      <div class="login_wrapper">
+      <div class="login_wrapper" >
         <div class="animate form login_form">
-          <section class="login_content">
+          <section class="login_content" >
 			{!! Form::open(array('route' => 'home','class'=>'form-signin')) !!}
-              <h1>Login Form</h1>
+              <h1>Bienvenido</h1>
               <div>
-
-                {!! Form::label('email') !!}
-				{!! Form::text('email',null,array('class'=>'form-control')) !!}
-
-
+				        {!! Form::text('email',null,array('class'=>'form-control',
+                       'placeholder'=>'Correo electrónico')) !!}
               </div>
               <div>
-                {!! Form::label('password') !!}
-				{!! Form::password('password',array('class'=>'form-control')) !!}
-              
+				        {!! Form::password('password',array('class'=>'form-control',
+                           'placeholder'=>'Contraseña')) !!}
               </div>
               <div>
                 {!! Form::token() !!}
-				{!! Form::submit(null,array('class'=>'btn btn-default submit ')) !!}
-
-				{!! Form::close() !!}
-
+				        {!! Form::submit(null,array('class'=>'btn btn-default submit ')) !!}
+				        {!! Form::close() !!}
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
                 
-                <div class="clearfix"></div>
+              <div class="clearfix"></div>
                 <br />
 
-               {{ link_to_route('createUser','Crear nueva cuenta') }}
+                {{ link_to_route('createUser','Crear nueva cuenta',array(),
+                                array('class'=>'btn-default submit form-control',
+                                'style'=>' text-decoration: none;')) 
+                }}
               </div>
           </section>
         </div>

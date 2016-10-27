@@ -58,7 +58,7 @@ class RouteServiceProvider extends ServiceProvider
         ], function ($router) {
             require base_path('routes/web.php');
 
-            Route::get('/login',['as' => 'login','uses' => 'AuthController@login']);
+            Route::get('/',['as' => 'login','uses' => 'AuthController@login']);
             Route::post('/home',['as'=>'home', 'uses' =>'AuthController@handleLogin']);
             Route::get('/logout',['as'=>'logout','uses'=>'AuthController@logout']);
             
