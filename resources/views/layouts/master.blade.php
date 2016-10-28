@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height:100%;">
+<html lang="es" style="height:100%;" >
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -20,23 +20,22 @@
     <!-- Animate.css -->
     <link rel="stylesheet prefetch" href="../public/vendors/animate.css/animate.min.css"> </link>
   </head>
+ 
     <style>
-  .home
+  .mybg
   {
     min-height: 720px;
-    position: relative;
     height: 100%;
-    background: url(img/clouds-earth-26689.jpg) center center;
+    background: url(img/blur-blurred-background.jpg) center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
-    color: #fff;
-
+    color:white;
   }
-  </style>
-    <div class="container-fluid home" >
+  </style> 
+    <div class="container-fluid mybg" >
     
       @yield('content')
     </div>

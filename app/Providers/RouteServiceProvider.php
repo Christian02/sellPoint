@@ -63,7 +63,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::get('/logout',['as'=>'logout','uses'=>'AuthController@logout']);
             
             Route::get('/home', array( 'as' => 'home', 'uses' => 'AuthController@home' ));
-            Route::get('/createUser',['as'=>'createUser','uses'=>'UsersController@create']);
             Route::post('/storeUser',['as'=>'storeUser','uses'=>'UsersController@store']);    
             Route::get('/create',['middleware'=>'auth','as'=>'create','uses'=>'ProductController@create']);
             
