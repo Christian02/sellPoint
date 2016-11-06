@@ -3,7 +3,27 @@
 <h3> Venta en mostrador</h3>
 <div  id="message"></div>
 <section class="row " >
-	<article class="col-xs-12 col-sm-8 col-md-9 col-lg-9" >
+
+	<aside class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+		<div class="well" id="radius">
+		<h4>Precio por kg: </h4>
+			<table class="table table-bordered" >
+                    <thead>
+                        <th>Precio</th>
+                        <th>Cantidad en Kg</th>
+                    </thead>
+                    <tbody>
+                    	@foreach ($field_data as $key =>$value) 
+	                        <tr>
+	                            <td > {{$value}}</td>
+	                            <td > {{$key}}</td>  
+	                        </tr>
+                    	@endforeach    
+             		</tbody> 
+            </table>
+		</div>				
+	</aside>
+	<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
 		{!! Form::open(array('id'=>'form_counter_sale')) !!}
 			<div class="form-group ">
 			  {!! Form::label('codeProduct','Código de Producto',array( "class"=>"form-control-label" )) !!}
@@ -32,7 +52,7 @@
 		
 		{!! Form::close() !!}
 	</article>
-	<aside class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+	<aside class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 		<div class="well" id="radius">
 			<ul>
 				<li >Código: <strong>15</strong>  Torta de cochinita </li>

@@ -45,13 +45,30 @@
 	    <aside class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ">
 	    	<div id="showDetailSales" > </div>
 	    </aside>
+	    <article class="col-xs-12 col-sm-8 col-md-9 col-lg-12">
+	    	{!! Form::label("selectDate_l","Seleccione la fecha en que registró sus compras") !!}
+	    	
+	    	{!! Form::text("date",null,
+	                	    array("class"=>"datepicker form-control",
+	                	    "id"=>"dateForGains","readonly","placeholder"=>"Haz click")) !!}	
+	    	<button id="showGain" type="button" class="btn btn-success">Ganancias</button>
+	    	
+	    	<div class="well">
+	    		<p id="showp" >Las ganancias del día de hoy es de $</p><p id="addGains"></p>
+	    	</div>
+	    </article>
+
   	<section> 
  <script type="text/javascript">   
     $(document).ready(function () 
     {
+    	$('#showp').hide();
         $('#date').datepicker({
             format: "mm-dd-yyyy"
-        });  
+        }); 
+        $('#dateForGains').datepicker({
+            format: "mm-dd-yyyy"
+        }); 
         $( "#perweek" ).click(function() 
         {
 
@@ -122,6 +139,28 @@
 			});      
         });
     });
+
+
+
+	$( "#showGain" ).click(function() 
+    {
+
+    	var d=document.getElementById("dateForGains").value;
+    	$.ajax(
+        {
+			type:'GET',
+			url:'reports',
+			data:'dateForGains='+escape(d)+'&dateOFSold='+$('#date').val(),
+			success: function(json)
+			{	
+				
+				$('#showp').toggle();
+				$('#addGains').html(json);
+			}
+		});  
+
+    });
+
 	function getpartialSale()
 	{
 		var d=document.getElementById("date").value;

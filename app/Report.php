@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Quotation;
 use Carbon\Carbon;
+use App\Purchase;
+
 class Report extends Model
 {
 
@@ -21,6 +23,13 @@ class Report extends Model
     		$this->getSqlForSales($date,$filter)
     	);
    	return $sales;
+   }
+   public function getGainsPerDay($date)
+   {
+    $purchase = new Purchase();
+    $purchases = $purchase->getTotalCashByDate($date);
+    return $purchases;
+
    }
    public function getSalesPerMonth($month,$year)
    {

@@ -21,6 +21,24 @@ class Purchase extends Model
         ->select(DB::raw('products.*, purchases.*,purchases.id as purchasesId'))->get();
         return $sales;
     }
+    public function getTotalCashByDate($date)
+    {
+        /*
+        $purchases = \DB::table('purchases')
+                    ->select('amount','unit_price_purchase')
+                    ->where(DB::raw("date_format(created_at,'%m-%d-%Y')"),'=',$date);
+
+        */
+
+        $sql =" SELECT amount*unit_price_purchase AS total  FROM purchases".
+         " WHERE date_format(purchases.created_at,'%m-%d-%Y')='{$date}'"  ;          
+        $purchases = DB::select(
+            $sql
+        );
+        
+        return $purchases;
+
+    }
     public function load($id)
     {
     	$purchase = \DB::table('purchases')

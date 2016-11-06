@@ -28,12 +28,42 @@ class ReportsController extends Controller
                     array_push($rows, $row);
                 }    
                 echo json_encode($rows,JSON_NUMERIC_CHECK);              
+            }else if(Input::get('dateForGains') && Input::get('dateOFSold'))
+            {
+                $date=Input::get('dateForGains');
+                $report = new Report();
+                $reports = $report->getGainsPerDay($date);
+                
+                $total=0;
+                $rows =array();
+                foreach ($reports as $report ) {
+                    $total+=$report->total;
+                }
+                if($total!=0)
+                {
+                    $totalSold = $this->getTotalSoldPerDay(Input::get('dateOFSold'));
+                    $total = $totalSold-$total;
+                    echo json_encode($total,JSON_NUMERIC_CHECK);
+                }
+                
             }
         }else
         {
             return \View::make('reports.sales');     
         }
         
+    }
+    private function getTotalSoldPerDay($date)
+    {
+        
+        $date = str_replace("-", "/",$date);
+        $sale = new Report();
+        $sales= $sale->getSalesPerDate($date);
+        $total=0;
+        foreach ($sales as $sale) {
+            $total=$total+($sale->amount*$sale->price_sale);
+        }
+        return $total;
     }
 
      public function listSalesTable(Request $request)
