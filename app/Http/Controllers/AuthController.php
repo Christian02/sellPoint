@@ -34,10 +34,12 @@ class AuthController extends Controller
     public function home(){
         $product= new Product();
         $cochinitaPrice=$product->getPriceSaleProductById(13);
-       
+        var_dump($cochinitaPrice);
+        $field_data=array();
         for ($i=10; $i <=$cochinitaPrice ; $i=$i+10) {
              $field_data[$i]=($i/$cochinitaPrice);
         }
-        return \View::make('sales.counter_sale',array('field_data'=>$field_data)); 
+
+        return \View::make('sales.counter_sale')->with(array('field_data'=>$field_data)); 
     }
 }
